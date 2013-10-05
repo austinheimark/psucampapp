@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="7e6b9455-5a26-4455-a9de-d4fd0374fb8d" Publisher="CN=Buck" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>psucampapp</DisplayName>
+    <PublisherDisplayName>Buck</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="psucampapp.App">
+      <VisualElements DisplayName="psucampapp" Logo="Assets\KnifeFork150x150.png" SmallLogo="Assets\KnifeFork30x30.png" Description="psucampapp" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\KnifeFork310x150.png" />
+        <SplashScreen Image="Assets\KnifeFork620x300.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>
