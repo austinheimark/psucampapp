@@ -181,12 +181,13 @@ namespace psucampapp
 
             Diff_Restaurant.IsEnabled = false;
 
-            try
-            {
-                GeocodeRequestOptions requestOptions = new GeocodeRequestOptions(business.GetNamedString("address1") + " " + business.GetNamedString("city") + ", " + business.GetNamedString("state") + " " + business.GetNamedString("zip"));
-                Bing.Maps.Search.SearchManager searchManager = bingMap.SearchManager;
-                Bing.Maps.Search.LocationDataResponse mapResponse = await searchManager.GeocodeAsync(requestOptions);
+            GeocodeRequestOptions requestOptions = new GeocodeRequestOptions(business.GetNamedString("address1") + " " + business.GetNamedString("city") + ", " + business.GetNamedString("state") + " " + business.GetNamedString("zip"));
+            Bing.Maps.Search.SearchManager searchManager = bingMap.SearchManager;
+            Bing.Maps.Search.LocationDataResponse mapResponse = await searchManager.GeocodeAsync(requestOptions);
 
+            //Make sure we got a response back
+            if (mapResponse.LocationData.Count > 0)
+            {
                 Bing.Maps.Location businessLocation = mapResponse.LocationData.First<GeocodeLocation>().Location;
                 bingMap.Children.Clear();
 
@@ -198,14 +199,8 @@ namespace psucampapp
                 bingMap.SetZoomLevel(15, MapAnimationDuration.None);
                 bingMap.SetView(businessLocation);
             }
-            catch (InvalidOperationException exc)
-            {
-                String message = exc.Message;
-            }
-            finally
-            {
-                Diff_Restaurant.IsEnabled = true;
-            }
+
+            Diff_Restaurant.IsEnabled = true;
 
             // Url.Content = business.GetNamedString("url");
         }
