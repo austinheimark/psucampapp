@@ -31,11 +31,6 @@
             <RowDefinition Height="140*"/>
         </Grid.RowDefinitions>
 
-        <!--
-            The remainder of the page is one large FlipView that displays details for
-            one item at a time, allowing the user to flip through all items in the chosen
-            group
-        -->
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
