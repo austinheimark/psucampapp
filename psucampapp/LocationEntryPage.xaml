@@ -8,17 +8,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="Location" HorizontalAlignment="Left" Margin="118,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="50" Width="315" FontSize="24" GotFocus="Entry_Field_Tapped"/>
-        <Button Content="Find A Restaurant!" HorizontalAlignment="Left" Margin="118,286,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="76" Width="245" FontSize="24"/>
-        <Grid Margin="0,0,0,628">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="Title" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
-        </Grid>
-        <TextBlock x:Name="errorLabel" HorizontalAlignment="Left" Margin="118,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Foreground="#FFC70000" Width="370"/>
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Style="{StaticResource LayoutRootStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="140*"/>
+        </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+                <TextBlock x:Name="pageTitle" Text="Find A Restaurant" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            </Grid>
+
+            <TextBlock x:Name="errorLabel" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Foreground="#FFC70000" Width="370" Margin="123,77,0,0" Grid.Row="2"/>
+            <TextBox x:Name="Location" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="50" Width="315" FontSize="24" GotFocus="Entry_Field_Tapped" Margin="123,22,0,0" Grid.Row="2"/>
+            <Button Content="Find A Restaurant!" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" Height="76" Width="245" FontSize="24" Margin="123,115,0,0" Grid.Row="2"/>
     </Grid>
 </common:LayoutAwarePage>
