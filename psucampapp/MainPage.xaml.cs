@@ -181,7 +181,7 @@ namespace psucampapp
 
             Diff_Restaurant.IsEnabled = false;
 
-            GeocodeRequestOptions requestOptions = new GeocodeRequestOptions(Location.Text);
+            GeocodeRequestOptions requestOptions = new GeocodeRequestOptions(business.GetNamedString("address1") + " " + business.GetNamedString("city") + ", " + business.GetNamedString("state") + " " + business.GetNamedString("zip"));
             Bing.Maps.Search.SearchManager searchManager = bingMap.SearchManager;
             Bing.Maps.Search.LocationDataResponse mapResponse = await searchManager.GeocodeAsync(requestOptions);
 
