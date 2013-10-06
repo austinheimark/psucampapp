@@ -133,7 +133,7 @@
     <None Include="README" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
+    <Content Include="Assets\.gitignore" />
     <Content Include="Assets\checkmark.jpg" />
     <Content Include="Assets\KnifeFork150x150.png" />
     <Content Include="Assets\KnifeFork24x24.png" />
