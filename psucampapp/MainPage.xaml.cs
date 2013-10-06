@@ -181,22 +181,31 @@ namespace psucampapp
 
             Diff_Restaurant.IsEnabled = false;
 
-            GeocodeRequestOptions requestOptions = new GeocodeRequestOptions(business.GetNamedString("address1") + " " + business.GetNamedString("city") + ", " + business.GetNamedString("state") + " " + business.GetNamedString("zip"));
-            Bing.Maps.Search.SearchManager searchManager = bingMap.SearchManager;
-            Bing.Maps.Search.LocationDataResponse mapResponse = await searchManager.GeocodeAsync(requestOptions);
+            try
+            {
+                GeocodeRequestOptions requestOptions = new GeocodeRequestOptions(business.GetNamedString("address1") + " " + business.GetNamedString("city") + ", " + business.GetNamedString("state") + " " + business.GetNamedString("zip"));
+                Bing.Maps.Search.SearchManager searchManager = bingMap.SearchManager;
+                Bing.Maps.Search.LocationDataResponse mapResponse = await searchManager.GeocodeAsync(requestOptions);
 
-            Bing.Maps.Location businessLocation = mapResponse.LocationData.First<GeocodeLocation>().Location;
-            bingMap.Children.Clear();
+                Bing.Maps.Location businessLocation = mapResponse.LocationData.First<GeocodeLocation>().Location;
+                bingMap.Children.Clear();
 
-            Pushpin pin = new Pushpin();
-            pin.Text = Name.Text;
-            MapLayer.SetPosition(pin, businessLocation);
-            bingMap.Children.Add(pin);
+                Pushpin pin = new Pushpin();
+                pin.Text = Name.Text;
+                MapLayer.SetPosition(pin, businessLocation);
+                bingMap.Children.Add(pin);
 
-            bingMap.SetZoomLevel(15, MapAnimationDuration.None);
-            bingMap.SetView(businessLocation);
-
-            Diff_Restaurant.IsEnabled = true;
+                bingMap.SetZoomLevel(15, MapAnimationDuration.None);
+                bingMap.SetView(businessLocation);
+            }
+            catch (InvalidOperationException exc)
+            {
+                String message = exc.Message;
+            }
+            finally
+            {
+                Diff_Restaurant.IsEnabled = true;
+            }
 
             // Url.Content = business.GetNamedString("url");
         }
